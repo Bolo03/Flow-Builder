@@ -6,8 +6,8 @@
 #include <filesystem>
 #include <windows.h>
 
-#include "FlowBuilder.h"
-#include "FlowRunner.h"
+#include "./FlowBuilder.h"
+#include "./FlowRunner.h"
 
 int main()
 {
