@@ -1,0 +1,23 @@
+Flow test created at Thu Jan 04 18:22:38 2024
+----------------------------------------
+Number of times the flow was started: 5
+Number of times the flow was finished: 5
+
+Step 1: TITLE
+> Skipped: 0
+> Errors: 0
+Step 2: NUMBER_INPUT
+> Skipped: 4
+> Errors: 0
+Step 3: NUMBER_INPUT
+> Skipped: 4
+> Errors: 0
+Step 4: CALCULUS
+> Skipped: 4
+> Errors: 2
+Step 5: OUTPUT
+> Skipped: 5
+> Errors: 0
+
+Average number of errors per flow completed: 0.4
+Average number of skips per flow completed: 3.4
