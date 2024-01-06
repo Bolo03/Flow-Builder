@@ -19,7 +19,9 @@ private:
     std::string flowName;
     std::string flowPath;
 
+    // steps vector used to write analytics file
     std::vector<std::string> steps;
+
     // all steps methods
     void createTitleStep()
     {
@@ -124,12 +126,16 @@ private:
         // check if there are 2 number inputs before
         std::ifstream flowFile(flowPath);
         std::string line;
+
+        // check is there are at least 2 number inputs in the flow
+        // to be able to create a calculus step
         int numberInputs = 0;
         while (getline(flowFile, line))
         {
             std::istringstream iss(line);
             std::string word;
             getline(iss, word, ',');
+
             if (word == "NUMBER_INPUT")
             {
                 numberInputs++;
@@ -173,6 +179,9 @@ private:
         // check if there is a file input step before
         std::ifstream flowFile(flowPath);
         std::string line;
+
+        // check is there are at least 1 file input in the flow
+        // to be able to create a display step
         int fileInput = 0;
         while (getline(flowFile, line))
         {

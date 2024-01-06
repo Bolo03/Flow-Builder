@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <windows.h>
 
+// struct made to store input values and step number
+// while running the flow
 template <typename T>
 struct Input
 {
@@ -46,8 +48,10 @@ protected:
     float avg_skips;
 
     std::string flowName;
+    // 1 if flow is opened, 0 if not, used to prevent writing analytics when flow is not opened
     int flowOpened;
 
+    // method to write analytics used when flow is completed
     void writeAnalytics()
     {
         std::ifstream analyticsFile;
@@ -391,8 +395,10 @@ private:
 
             std::string input;
 
+            // regex to see if input is step 3 + step 5 or min(step 3, step 5)
             std::regex input_regex("step [0-9]+ [\\+\\-\\*\\/] step [0-9]+");
             std::regex min_max_regex("min\\(step [0-9]+, step [0-9]+\\)|max\\(step [0-9]+, step [0-9]+\\)");
+
             int valid_input = 0;
             while (!valid_input)
             {
@@ -417,12 +423,11 @@ private:
                         // for +, -, *, /, pattern step 3 + step 5
                         if (std::regex_match(input, input_regex))
                         {
-                            // 5 7 14
                             int step1 = std::stoi(input.substr(5, 1));
                             int step2 = std::stoi(input.substr(14, 1));
                             std::string operation = input.substr(7, 1);
 
-                            // check is step1, step2 are number input steps
+                            // check is step inputs are number input steps
                             int valid_steps = 0;
 
                             for (int i = 0; i < numberInputs.size(); i++)
@@ -446,7 +451,9 @@ private:
 
                             // calculate
                             float result;
-                            std::string result_s;
+                            std::string result_s; // used to store result for output step
+
+                            // calculate result of the matching pattern
                             if (operation == "+")
                             {
                                 result = numberInputs[step1].value + numberInputs[step2].value;
@@ -507,15 +514,26 @@ private:
 
                             // calculate
                             float result;
+                            std::string result_s; // used to store result for output step
+
                             if (operation == "min")
                             {
                                 result = calcMin(numberInputs[step1].value, numberInputs[step2].value);
+                                result_s = "min(" + std::to_string(numberInputs[step1].value) + ", " + std::to_string(numberInputs[step2].value) + ") = " + std::to_string(result);
                             }
                             else if (operation == "max")
                             {
                                 result = calcMax(numberInputs[step1].value, numberInputs[step2].value);
+                                result_s = "max(" + std::to_string(numberInputs[step1].value) + ", " + std::to_string(numberInputs[step2].value) + ") = " + std::to_string(result);
                             }
+                            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
                             std::cout << "Result: " << result << std::endl;
+                            SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 1);
+
+                            Input<std::string> calculusResult;
+                            calculusResult.value = result_s;
+                            calculusResult.step = step_number;
+                            calculusResults.push_back(calculusResult);
                         }
                     }
                 }
@@ -581,6 +599,7 @@ private:
 
             std::string input;
             int valid_input = 0;
+
             // regex to see if input is .txt or .csv
             std::regex txt_regex(".*\\.txt");
             std::regex csv_regex(".*\\.csv");

@@ -51,10 +51,10 @@ int main()
             getline(std::cin, flowName);
             fflush(stdin);
 
+            // load an existing flow
             FlowRunner flowRunner;
             flowRunner.runFlow(flowName);
-            // load an existing flow
-        }
+                }
         else if (option == "3")
         {
             // delete an existing flow
