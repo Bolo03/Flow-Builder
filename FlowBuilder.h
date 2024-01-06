@@ -43,6 +43,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Title step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("TITLE");
         Sleep(3000);
     }
 
@@ -68,6 +70,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Text step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("TEXT");
         Sleep(3000);
     }
 
@@ -88,6 +92,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Test Input step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("TEXT_INPUT");
         Sleep(3000);
     }
 
@@ -108,6 +114,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Number Input step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("NUMBER_INPUT");
         Sleep(3000);
     }
 
@@ -134,6 +142,7 @@ private:
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 4);
             std::cout << "You need at least 2 number inputs before calculus!" << std::endl;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
             Sleep(3000);
             return;
         }
@@ -154,6 +163,7 @@ private:
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
             std::cout << "Calculus step created!" << std::endl;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+            steps.push_back("CALCULUS");
             Sleep(3000);
         }
     }
@@ -169,7 +179,7 @@ private:
             std::istringstream iss(line);
             std::string word;
             getline(iss, word, ',');
-            if (word == "TEXT_FILE_INPUT" || word == "CSV_FILE_INPUT" || word == "TEXT_INPUT")
+            if (word == "TEXT_FILE_INPUT" || word == "CSV_FILE_INPUT")
             {
                 fileInput = 1;
             }
@@ -194,13 +204,14 @@ private:
 
             // write to csv file
             std::ofstream flowFile;
-            flowFile.open("./flows/" + flowName + ".csv", std::ios_base::app);
+            flowFile.open(flowPath, std::ios_base::app);
             flowFile << "DISPLAY," << description << "\n";
             flowFile.close();
 
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
             std::cout << "Display step created!" << std::endl;
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+            steps.push_back("DISPLAY");
             Sleep(3000);
         }
     }
@@ -222,6 +233,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Text File Input step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("TEXT_FILE_INPUT");
         Sleep(3000);
     }
 
@@ -242,6 +255,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "CSV File Input step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("CSV_FILE_INPUT");
         Sleep(3000);
     }
 
@@ -277,6 +292,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Output step created!" << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("OUTPUT");
         Sleep(3000);
     }
 
@@ -293,6 +310,8 @@ private:
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);
         std::cout << "Flow " << flowName << " created at " << ctime(&now) << std::endl;
         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
+
+        steps.push_back("END");
         Sleep(3000);
     }
 
@@ -405,7 +424,6 @@ public:
             {
                 system("cls");
                 createTitleStep();
-                steps.push_back("TITLE");
 
                 break;
             }
@@ -413,7 +431,6 @@ public:
             {
                 system("cls");
                 createTextStep();
-                steps.push_back("TEXT");
 
                 break;
             }
@@ -421,7 +438,6 @@ public:
             {
                 system("cls");
                 createTextInputStep();
-                steps.push_back("TEXT_INPUT");
 
                 break;
             }
@@ -429,7 +445,6 @@ public:
             {
                 system("cls");
                 createNumberInputStep();
-                steps.push_back("NUMBER_INPUT");
 
                 break;
             }
@@ -437,7 +452,6 @@ public:
             {
                 system("cls");
                 createCalculusStep();
-                steps.push_back("CALCULUS");
 
                 break;
             }
@@ -445,7 +459,6 @@ public:
             {
                 system("cls");
                 createDisplayStep();
-                steps.push_back("DISPLAY");
 
                 break;
             }
@@ -453,7 +466,6 @@ public:
             {
                 system("cls");
                 createTextFileInputStep();
-                steps.push_back("TEXT_FILE_INPUT");
 
                 break;
             }
@@ -461,7 +473,6 @@ public:
             {
                 system("cls");
                 createCSVFileInputStep();
-                steps.push_back("CSV_FILE_INPUT");
 
                 break;
             }
@@ -469,7 +480,6 @@ public:
             {
                 system("cls");
                 createOutputStep();
-                steps.push_back("OUTPUT");
 
                 break;
             }
@@ -477,7 +487,6 @@ public:
             {
                 system("cls");
                 createEndStep();
-                steps.push_back("END");
 
                 break;
             }

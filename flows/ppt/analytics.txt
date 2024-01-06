@@ -1,7 +1,7 @@
-Flow ppt created at Thu Jan 04 20:31:44 2024
+Flow ppt created at Sat Jan 06 15:02:11 2024
 ----------------------------------------
-Number of times the flow was started: 0
-Number of times the flow was finished: 0
+Number of times the flow was started: 1
+Number of times the flow was finished: 1
 
 Step 1: TITLE
 > Skipped: 0
@@ -9,12 +9,15 @@ Step 1: TITLE
 Step 2: TEXT
 > Skipped: 0
 > Errors: 0
-Step 3: TITLE
+Step 3: TEXT
 > Skipped: 0
 > Errors: 0
-Step 4: END
+Step 4: TITLE
+> Skipped: 0
+> Errors: 0
+Step 5: TEXT_INPUT
 > Skipped: 0
 > Errors: 0
 
-Average number of errors per flow finished: 0
-Average number of skips per flow finished: 0
+Average number of errors per flow completed: 0
+Average number of skips per flow completed: 0

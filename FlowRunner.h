@@ -46,6 +46,7 @@ protected:
     float avg_skips;
 
     std::string flowName;
+    int flowOpened;
 
     void writeAnalytics()
     {
@@ -118,17 +119,20 @@ public:
         step_analytics = std::vector<struct StepAnalytics>();
         avg_errors = 0;
         avg_skips = 0;
+
+        flowName = "";
+        flowOpened = 0;
     }
 
     virtual void runFlow(std::string filename) = 0;
 
     ~Flow()
     {
-        writeAnalytics();
-
+        if (flowOpened)
+        {
+            writeAnalytics();
+        }
         step_analytics.clear();
-
-        system("pause");
     }
 
     friend class FlowBuilder;
@@ -541,10 +545,9 @@ private:
                     }
                 }
             }
+            // analytics
+            step_analytics.push_back(step_analytic);
         }
-
-        // analytics
-        step_analytics.push_back(step_analytic);
     }
 
     void runDisplayStep(std::stringstream &ss, int step_number)
@@ -552,6 +555,12 @@ private:
         struct StepAnalytics step_analytic;
         step_analytic.skips = 0;
         step_analytic.errors = 0;
+
+        system("cls");
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 8);
+        std::cout << "STEP " << step_number << " - "
+                  << "DISPLAY" << std::endl;
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);
 
         if (!continueOrSkipStep())
         {
@@ -599,7 +608,7 @@ private:
                         valid_input = 1;
                         std::ifstream file;
 
-                        file.open("./input_files/" + input);
+                        file.open("./flows/" + flowName + "/" + input);
                         if (!file.is_open())
                         {
                             throw std::invalid_argument("File does not exist!");
@@ -1156,6 +1165,7 @@ public:
             std::vector<std::string> steps;
 
             flow_started++; // analytics
+            flowOpened = 1;
 
             int step_count = 1;
             while (std::getline(flowFile, line))

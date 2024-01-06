@@ -1,4 +1,6 @@
-TITLE,this is test ppt,subtitle for test
-TEXT,this is content,just some text
-TITLE,thank you,have a nice day
+TITLE,PPT maker,This is how you can use flow builder to make presentations
+TEXT,Title slide and Content slide,Using TITLE step you can make title slides and with TEXT step you can make content slides
+TEXT,No limits,You can use as many TITLE and TEXT step for your presentation
+TITLE,Thank you!,Make sure to leave a feedback :)
+TEXT_INPUT,Enter your feedback
 END

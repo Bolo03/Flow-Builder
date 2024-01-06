@@ -1,0 +1,5 @@
+TITLE,This is Operation flow,You will input 2 numbers
+NUMBER_INPUT,first number
+NUMBER_INPUT,second number
+CALCULUS,enter operation here
+END

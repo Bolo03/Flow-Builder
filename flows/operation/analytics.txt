@@ -1,0 +1,20 @@
+Flow operation created at Sat Jan 06 14:07:09 2024
+----------------------------------------
+Number of times the flow was started: 2
+Number of times the flow was finished: 2
+
+Step 1: TITLE
+> Skipped: 0
+> Errors: 0
+Step 2: NUMBER_INPUT
+> Skipped: 1
+> Errors: 0
+Step 3: NUMBER_INPUT
+> Skipped: 1
+> Errors: 0
+Step 4: CALCULUS
+> Skipped: 1
+> Errors: 1
+
+Average number of errors per flow completed: 0.5
+Average number of skips per flow completed: 1.5
